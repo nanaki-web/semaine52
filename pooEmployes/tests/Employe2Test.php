@@ -28,7 +28,7 @@ class Employe2Test extends TestCase
     
     // Teste la fonction getAnciennete de la classe Employe
     public function testAncienneteEmploye2(){
-        $anciennete = 19;
+        $anciennete = 20;
         $dateTemoin = "12/08/2000";
         $employeATester = new Employe();
         $employeATester->setDateEmbauche("12/08/2000");
@@ -38,7 +38,7 @@ class Employe2Test extends TestCase
     // Teste la fonction getAnciennete de la classe Employe
     public function testAncienneteEmploye3(){
         $employeATester = new Employe();
-        $anciennete = 1;
+        $anciennete = 2;
         // $dateTemoin = DateTime::createFromFormat("d/m/Y",$this->dateTemoin);
         $employeATester->setDateEmbauche("29/10/2018");
         $this->assertEquals($anciennete,$employeATester->getAnciennete());

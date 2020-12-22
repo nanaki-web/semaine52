@@ -8,7 +8,10 @@ class Employe
     Private $_fonction;
     Private $_salaire;
     Private $_service;
-    private $_anciennete;
+    // public $_anciennete;
+    
+
+
     // private $_prime;
 
     // Mutateur : définit/modifie la valeur passée en argument à l'attribut 
@@ -39,19 +42,25 @@ class Employe
     
     public function setDateEmbauche($sDateEmbauche) 
     {
-        $_dateEmbauchestock = explode("/", $sDateEmbauche);
-        $this->_dateEmbauche = date_create($_dateEmbauchestock[2]."-".$_dateEmbauchestock[1]."-".$_dateEmbauchestock[0]);
+        // $_dateEmbauchestock = explode("/", $sDateEmbauche);
+        // $this->_dateEmbauche = date_create($_dateEmbauchestock[2]."-".$_dateEmbauchestock[1]."-".$_dateEmbauchestock[0]);
          
+        
+        $this->_dateEmbauche = Datetime::createFromFormat("d/m/Y",$sDateEmbauche);
+        var_dump($this->_dateEmbauche);
+        
     }
 
     // Accesseur : renvoie la valeur d'un attribut  
     public function getDateEmbauche() 
     {
-        $_dateEmbauchestock = explode("-",  $this->_dateEmbauche->format('Y-m-d'));
-        $this->_dateEmbauche = $_dateEmbauchestock[2]."/".$_dateEmbauchestock[1]."/".$_dateEmbauchestock[0];
+        // $_dateEmbauchestock = explode("-",  $this->_dateEmbauche->format('Y-m-d'));
+        // $this->_dateEmbauche = $_dateEmbauchestock[2]."/".$_dateEmbauchestock[1]."/".$_dateEmbauchestock[0];
 
-        return DateTime::createFromFormat("d/m/Y",$this->_dateEmbauche);
-           
+        // return DateTime::createFromFormat("d/m/Y",$this->_dateEmbauche);
+         
+        // var_dump($this->_dateEmbauche);
+        return $this->_dateEmbauche;  
     }
 
     // Mutateur : définit/modifie la valeur passée en argument à l'attribut 
@@ -93,39 +102,37 @@ class Employe
 
         function __construct($nom,$prenom,$dateEmbauche,$fonction,$salaire,$service) 
         {
-            $_dateEmbauchestock = explode("/", $dateEmbauche);
-            
-
-            $this->_nom = $nom;
-            $this->_prenom = $prenom;
-            $this->_dateEmbauche = date_create($_dateEmbauchestock[2]."-".$_dateEmbauchestock[1]."-".$_dateEmbauchestock[0])->format('Y-m-d');
-            $this->_fonction = $fonction;
-            $this->_salaire = $salaire;
-            $this->_service=$service;
-            $this->_anciennete= $this->getAnciennete();
-            //  $this->_prime = $this -> calculerPrime() ;
+            $this->setnom($nom);
+            $this->setprenom($prenom);
+            $this->setDateEmbauche($dateEmbauche);
+            $this->setsalaire($salaire);
+            $this->setfonction($fonction);
+            $this->setservice($service);
+            $this->_anciennete = $this->getAnciennete();
+            $this->_primeSalaire = $this->calculerPrime();
         }
 
    public function getAnciennete()
    {
-        $datetime1 = $this->_dateEmbauche;
-        $datetime2 = date("Y-m-d");
-
-
-        $interval = date_diff(date_create($datetime1->format('Y-m-d')), date_create($datetime2));
-    
-        return (int)$interval->format('%y');
+        // $datetime1 = $this->_dateEmbauche;
+        // $datetime2 = date("Y-m-d");
+        // $interval = date_diff(date_create($datetime1->format('Y-m-d')), date_create($datetime2));
+        // return (int)$interval->format('%y');
+        $datetime1 = $this->getDateEmbauche();
+        $interval = date_diff(($datetime1), new DateTime());
+        return(int)$interval->format('%y,%m,%d');
    }
 
-//    public function calculerPrime ()
-//    {
-//     return $_prime = (($salaire * 5)/100) + ((2*$_anciennete)/100) ;
-//    }
+   
+   public function calculerPrime ()
+   {    
+        $primeSalaire=(int)(($this->_salaire*0.05)+(($this->_salaire*$this->getAnciennete())*0.02));
+        return $primeSalaire;
+   }
+
+
+
+
 }
-
-
-
-
-
 
 ?>
