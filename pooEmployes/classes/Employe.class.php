@@ -9,8 +9,9 @@ class Employe
     Private $_salaire;
     Private $_service;
     // public $_anciennete;
+    public static $nbrEmploye = 0;
+  
     
-
 
     // private $_prime;
 
@@ -47,7 +48,7 @@ class Employe
          
         
         $this->_dateEmbauche = Datetime::createFromFormat("d/m/Y",$sDateEmbauche);
-        var_dump($this->_dateEmbauche);
+        // var_dump($this->_dateEmbauche);
         
     }
 
@@ -100,17 +101,7 @@ class Employe
     }
 
 
-        function __construct($nom,$prenom,$dateEmbauche,$fonction,$salaire,$service) 
-        {
-            $this->setnom($nom);
-            $this->setprenom($prenom);
-            $this->setDateEmbauche($dateEmbauche);
-            $this->setsalaire($salaire);
-            $this->setfonction($fonction);
-            $this->setservice($service);
-            $this->_anciennete = $this->getAnciennete();
-            $this->_primeSalaire = $this->calculerPrime();
-        }
+        
 
    public function getAnciennete()
    {
@@ -130,9 +121,17 @@ class Employe
         return $primeSalaire;
    }
 
+  
+   function __construct() 
+   {
+    self::$nbrEmploye ++ ;
+    
+    }
 
 
 
 }
+
+
 
 ?>
