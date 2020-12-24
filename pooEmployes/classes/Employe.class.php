@@ -1,7 +1,9 @@
 <?php
 
-class Employe
+
+class Employe extends agence
 {
+    
     Private $_nom;
     Private $_prenom;
     Private $_dateEmbauche ;
@@ -10,7 +12,7 @@ class Employe
     Private $_service;
     // public $_anciennete;
     public static $nbrEmploye = 0;
-  
+    private $_agence;
     
 
     // private $_prime;
@@ -121,6 +123,17 @@ class Employe
         return $primeSalaire;
    }
 
+   // Mutateur : définit/modifie la valeur passée en argument à l'attribut 
+   public function setAgence($sAgence) 
+   {
+   return $this->_agence = $sAgence;
+   }
+
+   // Accesseur : renvoie la valeur d'un attribut  
+   public function getAgence() 
+   {
+       return $this->_agence;
+   }
   
    function __construct() 
    {

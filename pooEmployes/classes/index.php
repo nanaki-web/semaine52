@@ -23,7 +23,10 @@ require_once "./Employe.class.php";
 
 
 $emp = new Employe();
+$emp2 = new Employe();
+
 $employe=[];
+
             $emp->setNom("wilga");
             $emp->setPrenom("Anne");
             $emp->setDateEmbauche("12/07/2018");
@@ -31,11 +34,51 @@ $employe=[];
             $emp->setSalaire("75000");
             $emp->setService("info");
             array_push($employe,$emp);
-            asort($employe,$emp);
-            echo $emp ->getNom()," " ,$emp->getPrenom()," ",$emp->getFonction()," ",$emp->getSalaire()," ",$emp->getService();
-            // echo $emp ->getPrenom();
-            // echo $emp ->getFonction();
-            // echo $emp ->getSalaire();
-            // echo $emp ->getService();
 
+            $emp2->setNom("wilga");
+            $emp2->setPrenom("Nemesis");
+            $emp2->setDateEmbauche("22/04/2005");
+            $emp2->setFonction("dw");
+            $emp2->setSalaire("70000");
+            $emp2->setService("info");
+            array_push($employe,$emp2);
             
+           
+            
+
+
+
+            var_dump($employe);
+echo "<br><br>";
+
+            asort($employe);
+            var_dump($employe);
+
+
+
+
+            // echo $emp2 ->getNom()," " ,$emp2->getPrenom()," ",$emp2->getFonction()," ",$emp2->getSalaire()," ",$emp2->getService(),"<br>";
+            // echo $emp ->getNom()," " ,$emp->getPrenom()," ",$emp->getFonction()," ",$emp->getSalaire()," ",$emp->getService();
+
+
+           
+
+
+
+
+
+
+
+                // function tri_employe($emp, $emp2)
+                // {
+                // return strcmp($emp->getPrenom(), $emp2->getPrenom());
+                // var_dump($emp2);
+                // var_dump($emp);
+                // }
+              
+                
+                // asort($tabEmploye,'tri_employe');
+                
+               
+
+
